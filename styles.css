@@ -1,0 +1,38 @@
+:root{--ink:#0F0F0F;--steel:#1E1E1E;--orange:#FF6600;--chrome:linear-gradient(180deg,#fff,#b9bec4 55%,#6d737a)}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--ink)}
+.bg-ink{background:var(--ink)}.bg-steel{background:var(--steel)}
+.text-orange{color:var(--orange)}.hover\:text-orange:hover{color:var(--orange)}
+.bg-orange{background:var(--orange)}.hover\:border-orange:hover{border-color:var(--orange)}
+.accent-orange{accent-color:var(--orange)}
+.font-display{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:.02em}
+.chrome-text{background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+.section-title{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:2.25rem;margin-bottom:1.5rem;background:var(--chrome);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero{background:radial-gradient(circle at 75% 40%,rgba(255,102,0,.22),transparent 55%),var(--ink)}
+.hero-bike{width:100%;aspect-ratio:16/10;display:grid;place-items:center}
+.hero-bike svg{width:100%;height:100%;filter:drop-shadow(0 20px 30px rgba(0,0,0,.7))}
+.hero-bike.mini{aspect-ratio:16/8;background:var(--ink);border-radius:8px}
+.btn-primary,.btn-ghost{display:inline-block;padding:.8rem 1.5rem;font-weight:700;border-radius:4px;transition:.2s;cursor:pointer;text-align:center}
+.btn-primary{background:var(--orange);color:#000}.btn-primary:hover{background:#ff8533}
+.btn-ghost{border:1px solid #9aa0a6;color:#e5e7eb}.btn-ghost:hover{border-color:var(--orange);color:var(--orange)}
+.field{width:100%;background:var(--steel);border:1px solid #3a3a3a;border-radius:4px;padding:.7rem .9rem;color:#eee}
+.field:focus,.btn-primary:focus-visible,.btn-ghost:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.err{color:#ff7a7a;display:block;min-height:1rem}
+.chip{padding:.45rem .9rem;border:1px solid #3a3a3a;border-radius:999px;font-size:.8rem;font-weight:600;cursor:pointer;background:transparent;color:#ddd}
+.chip.active{background:var(--orange);border-color:var(--orange);color:#000}
+.card{background:var(--steel);border:1px solid #2c2c2c;border-radius:8px}
+.bike-card{overflow:hidden;transition:transform .2s,border-color .2s}
+.bike-card:hover{transform:translateY(-4px);border-color:var(--orange)}
+.map-box{min-height:220px;border:1px dashed #555;border-radius:8px;display:grid;place-items:center;text-align:center;padding:1rem;color:#888;font-size:.85rem;background:repeating-linear-gradient(45deg,#161616,#161616 12px,#1a1a1a 12px,#1a1a1a 24px)}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:50}
+.modal{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:1rem;overflow-y:auto}
+.modal-body{position:relative;background:var(--steel);border:1px solid #333;border-radius:10px;padding:1.5rem;width:100%;max-width:560px;animation:pop .2s ease-out}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
+.swatch{width:34px;height:34px;border-radius:50%;border:2px solid #555;cursor:pointer}
+.swatch.active{border-color:#fff;box-shadow:0 0 0 2px var(--orange)}
+.cart{position:fixed;top:0;right:0;height:100%;width:min(380px,100%);background:var(--ink);border-left:1px solid #333;z-index:70;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .3s}
+.cart.open{transform:none}
+.toast{position:fixed;left:50%;bottom:1.5rem;transform:translate(-50%,150%);background:#fff;color:#000;font-weight:600;padding:.8rem 1.2rem;border-radius:6px;z-index:80;transition:transform .3s;max-width:90%;border-left:6px solid var(--orange)}
+.toast.show{transform:translate(-50%,0)}
+.toast.error{border-left-color:#d33}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iron & Roar Motors | Dealer Resmi Harley-Davidson</title>
+<meta name="description" content="Katalog Harley-Davidson, simulasi kredit, dan booking test ride di Iron & Roar Motors.">
+<meta name="theme-color" content="#0F0F0F">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-ink text-zinc-200">
+<header class="fixed top-0 inset-x-0 z-40 bg-ink/90 backdrop-blur border-b border-zinc-800">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="#top" class="font-display text-2xl tracking-wide chrome-text">IRON &amp; ROAR</a>
+    <nav class="hidden md:flex gap-6 text-sm font-semibold">
+      <a href="#showroom" class="hover:text-orange">Showroom</a>
+      <a href="#kredit" class="hover:text-orange">Kredit</a>
+      <a href="#booking" class="hover:text-orange">Test Ride</a>
+      <a href="#tentang" class="hover:text-orange">Tentang</a>
+      <a href="#kontak" class="hover:text-orange">Kontak</a>
+    </nav>
+    <button id="cartBtn" class="relative px-3 py-2 border border-zinc-600 rounded hover:border-orange" aria-label="Buka keranjang deposit">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span id="cartCount" class="absolute -top-2 -right-2 bg-orange text-black text-xs font-bold rounded-full w-5 h-5 grid place-items-center">0</span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero min-h-screen flex items-center pt-16">
+  <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
+    <div>
+      <p class="text-orange font-semibold mb-3">Dealer resmi Harley-Davidson</p>
+      <h1 class="font-display text-5xl md:text-7xl leading-none chrome-text">Mesin yang terdengar sebelum terlihat.</h1>
+      <p class="mt-5 text-zinc-400 max-w-md">Pilih Road King, Fat Boy, atau Pan America. Bandingkan spesifikasi, hitung cicilan, lalu jadwalkan test ride di cabang terdekat.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#showroom" class="btn-primary">Jelajahi Katalog</a>
+        <a href="#booking" class="btn-ghost">Jadwalkan Test Ride</a>
+      </div>
+    </div>
+    <div id="heroBike" class="hero-bike" aria-hidden="true"></div>
+  </div>
+</section>
+
+<section id="showroom" class="max-w-6xl mx-auto px-4 py-20">
+  <h2 class="section-title">Showroom</h2>
+  <div id="chips" class="flex flex-wrap gap-2 mb-4"></div>
+  <div class="grid sm:grid-cols-3 gap-3 mb-8">
+    <input id="search" type="search" placeholder="Cari model atau mesin" class="field sm:col-span-2" aria-label="Cari motor">
+    <select id="sort" class="field" aria-label="Urutkan">
+      <option value="">Urutkan</option>
+      <option value="price-asc">Harga: termurah</option>
+      <option value="price-desc">Harga: termahal</option>
+      <option value="cc-desc">Mesin: terbesar</option>
+      <option value="year-desc">Tahun: terbaru</option>
+    </select>
+  </div>
+  <div id="grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+  <p id="empty" class="hidden text-center text-zinc-400 py-12">Tidak ada motor yang cocok. Ubah kata kunci atau pilih kategori lain.</p>
+</section>
+
+<section id="kredit" class="bg-steel py-20">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="section-title">Simulasi Kredit</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="space-y-4">
+        <label class="block text-sm">Model<select id="cModel" class="field mt-1"></select></label>
+        <label class="block text-sm">Uang muka: <b id="dpLabel" class="text-orange"></b>
+          <input id="cDp" type="range" min="10" max="70" value="30" class="w-full accent-orange"></label>
+        <label class="block text-sm">Suku bunga per tahun (%)
+          <input id="cRate" type="number" min="0" max="30" step="0.1" value="6.5" class="field mt-1"></label>
+        <label class="block text-sm">Tenor
+          <select id="cTenor" class="field mt-1">
+            <option>12</option><option>24</option><option>36</option><option selected>48</option><option>60</option>
+          </select></label>
+      </div>
+      <div class="card p-6 flex flex-col justify-center">
+        <p class="text-zinc-400 text-sm">Perkiraan cicilan per bulan</p>
+        <p id="cResult" class="font-display text-4xl text-orange my-2">-</p>
+        <dl class="text-sm text-zinc-400 space-y-1">
+          <div class="flex justify-between"><dt>Harga</dt><dd id="cPrice"></dd></div>
+          <div class="flex justify-between"><dt>Uang muka</dt><dd id="cDpAmt"></dd></div>
+          <div class="flex justify-between"><dt>Pokok pinjaman</dt><dd id="cLoan"></dd></div>
+          <div class="flex justify-between"><dt>Total bunga</dt><dd id="cInterest"></dd></div>
+        </dl>
+        <p class="text-xs text-zinc-500 mt-4">Simulasi saja. Angka final mengikuti persetujuan lembaga pembiayaan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="booking" class="max-w-3xl mx-auto px-4 py-20">
+  <h2 class="section-title">Booking Test Ride</h2>
+  <form id="rideForm" class="grid sm:grid-cols-2 gap-4" novalidate>
+    <label class="text-sm">Nama lengkap<input id="fName" class="field mt-1" autocomplete="name"><small class="err"></small></label>
+    <label class="text-sm">WhatsApp / telepon<input id="fPhone" class="field mt-1" inputmode="tel" placeholder="08123456789"><small class="err"></small></label>
+    <label class="text-sm">Model motor<select id="fModel" class="field mt-1"></select><small class="err"></small></label>
+    <label class="text-sm">Tanggal<input id="fDate" type="date" class="field mt-1"><small class="err"></small></label>
+    <label class="text-sm sm:col-span-2">Cabang dealer
+      <select id="fBranch" class="field mt-1">
+        <option value="">Pilih cabang</option>
+        <option>Jakarta - Senayan</option><option>Bandung - Dago</option><option>Surabaya - Darmo</option><option>Bali - Sunset Road</option>
+      </select><small class="err"></small></label>
+    <button class="btn-primary sm:col-span-2" type="submit">Kirim Jadwal Test Ride</button>
+  </form>
+</section>
+
+<section id="tentang" class="bg-steel py-20">
+  <div class="max-w-4xl mx-auto px-4 grid md:grid-cols-2 gap-8">
+    <div>
+      <h2 class="section-title">Tentang Kami</h2>
+      <p class="text-zinc-400">Iron &amp; Roar Motors adalah dealer resmi Harley-Davidson dengan showroom, bengkel bersertifikat, dan layanan pembiayaan. Tim kami membantu Anda memilih motor sesuai gaya berkendara, dari touring jarak jauh hingga cruising akhir pekan.</p>
+    </div>
+    <div class="card p-6">
+      <h3 class="font-display text-xl mb-3">Jam operasional</h3>
+      <ul class="text-sm text-zinc-400 space-y-1">
+        <li class="flex justify-between"><span>Senin - Jumat</span><span>09.00 - 18.00</span></li>
+        <li class="flex justify-between"><span>Sabtu</span><span>09.00 - 17.00</span></li>
+        <li class="flex justify-between"><span>Minggu</span><span>11.00 - 16.00</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="kontak" class="max-w-6xl mx-auto px-4 py-20">
+  <h2 class="section-title">Kontak</h2>
+  <div class="grid md:grid-cols-2 gap-8">
+    <div class="space-y-3 text-zinc-400">
+      <p><i class="fa-solid fa-location-dot text-orange w-6"></i>Jl. Jenderal Sudirman No. 88, Jakarta</p>
+      <p><i class="fa-solid fa-phone text-orange w-6"></i>(021) 555-0188</p>
+      <p><i class="fa-brands fa-whatsapp text-orange w-6"></i>0812-0000-8888</p>
+      <div class="flex gap-4 text-2xl pt-2">
+        <a href="#" aria-label="Instagram" class="hover:text-orange"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="YouTube" class="hover:text-orange"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" aria-label="Facebook" class="hover:text-orange"><i class="fa-brands fa-facebook"></i></a>
+      </div>
+    </div>
+    <div class="map-box"><span>Peta Google Maps (ganti dengan iframe embed lokasi dealer)</span></div>
+  </div>
+</section>
+</main>
+
+<footer class="border-t border-zinc-800 py-6 text-center text-xs text-zinc-500">&copy; 2026 Iron &amp; Roar Motors. Situs demonstrasi, bukan dealer resmi sebenarnya.</footer>
+
+<div id="overlay" class="overlay hidden"></div>
+
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="modal-body">
+    <button id="mClose" class="absolute top-3 right-3 text-xl" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button>
+    <div id="mBike" class="hero-bike mini"></div>
+    <h3 id="mTitle" class="font-display text-3xl mt-2"></h3>
+    <p id="mEngine" class="text-zinc-400 text-sm"></p>
+    <p id="mPrice" class="text-orange font-display text-2xl my-2"></p>
+    <p class="text-sm mb-1">Warna: <b id="mColorName"></b></p>
+    <div id="mSwatches" class="flex gap-2 mb-4"></div>
+    <dl id="mSpecs" class="grid grid-cols-2 gap-2 text-sm"></dl>
+    <div class="flex flex-wrap gap-2 mt-5">
+      <button id="mAdd" class="btn-primary">Booking fee</button>
+      <button id="mCalc" class="btn-ghost">Simulasi kredit</button>
+    </div>
+  </div>
+</div>
+
+<aside id="cart" class="cart" aria-label="Keranjang deposit">
+  <div class="flex items-center justify-between p-4 border-b border-zinc-800">
+    <h3 class="font-display text-xl">Deposit Booking</h3>
+    <button id="cartClose" aria-label="Tutup keranjang"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div id="cartItems" class="flex-1 overflow-y-auto p-4 space-y-3"></div>
+  <div class="p-4 border-t border-zinc-800">
+    <div class="flex justify-between mb-3"><span>Total booking fee</span><b id="cartTotal" class="text-orange"></b></div>
+    <button id="checkout" class="btn-primary w-full">Bayar Booking Fee (simulasi)</button>
+  </div>
+</aside>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>

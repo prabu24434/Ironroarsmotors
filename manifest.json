@@ -1,0 +1,13 @@
+{
+  "name": "Iron & Roar Motors",
+  "short_name": "Iron&Roar",
+  "description": "Dealer resmi Harley-Davidson: katalog, kredit, dan test ride.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0F0F0F",
+  "theme_color": "#FF6600",
+  "icons": [
+    {"src":"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' fill='%230F0F0F'/%3E%3Ctext x='256' y='330' font-size='260' text-anchor='middle' fill='%23FF6600' font-family='Impact,sans-serif'%3EIR%3C/text%3E%3C/svg%3E","sizes":"512x512","type":"image/svg+xml","purpose":"any"}
+  ]
+}
